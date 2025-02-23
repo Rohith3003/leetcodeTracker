@@ -1,41 +1,43 @@
-// Last updated: 2/23/2025, 11:05:27 PM
+// Last updated: 2/23/2025, 11:15:37 PM
+import java.util.*;
+
 class Solution {
+    private Map<String, Integer> dp = new HashMap<>();
     
-    int max = 0;
     public int maxProduct(String s) {
-        
-        char[] c = s.toCharArray();
-        dfs(c, 0, "", "");
-        
-        return max;
+        return dfs(s.toCharArray(), 0, "", "");
     }
     
-    public void dfs(char[] c, int i, String s1, String s2){
-        
-        if(i >= c.length){
-            
-            if(isPalin(s1) && isPalin(s2))
-                max = Math.max(max, s1.length()*s2.length());
-            return;
+    private int dfs(char[] c, int i, String s1, String s2) {
+        if (i >= c.length) {
+            if (isPalindrome(s1) && isPalindrome(s2)) {
+                return s1.length() * s2.length();
+            }
+            return 0;
         }
         
-        dfs(c, i+1, s1+c[i], s2);
-        dfs(c, i+1, s1, s2+c[i]);
-        dfs(c, i+1, s1, s2);
+        // Memoization key
+        String key = i + "|" + s1 + "|" + s2;
+        if (dp.containsKey(key)) return dp.get(key);
+
+        // Explore three choices
+        int option1 = dfs(c, i + 1, s1 + c[i], s2); // Add to s1
+        int option2 = dfs(c, i + 1, s1, s2 + c[i]); // Add to s2
+        int option3 = dfs(c, i + 1, s1, s2);        // Skip character
+
+        // Store the max product in the DP table
+        int result = Math.max(option1, Math.max(option2, option3));
+        dp.put(key, result);
+        return result;
     }
-    
-     public boolean isPalin(String str){
- 
+
+    private boolean isPalindrome(String str) {
         int i = 0, j = str.length() - 1;
- 
         while (i < j) {
- 
-            if (str.charAt(i) != str.charAt(j))
-                return false;
+            if (str.charAt(i) != str.charAt(j)) return false;
             i++;
             j--;
         }
- 
         return true;
     }
 }
