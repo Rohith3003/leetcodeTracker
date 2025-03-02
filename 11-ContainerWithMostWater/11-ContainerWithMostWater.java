@@ -1,4 +1,4 @@
-// Last updated: 3/2/2025, 10:20:50 PM
+// Last updated: 3/2/2025, 10:22:13 PM
 class Solution {
     public int maxArea(int[] height) {
         int start=0;
@@ -17,6 +17,9 @@ class Solution {
                 }
                 start++;
             } else {
+                while(start<end && height[end-1]<height[end]) {
+                    end--;
+                }
                 end--;
             }
         }
