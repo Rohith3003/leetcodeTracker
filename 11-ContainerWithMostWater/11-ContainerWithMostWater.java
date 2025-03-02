@@ -1,4 +1,4 @@
-// Last updated: 3/2/2025, 10:22:31 PM
+// Last updated: 3/2/2025, 10:30:20 PM
 class Solution {
     public int maxArea(int[] height) {
         int start=0;
@@ -11,15 +11,10 @@ class Solution {
 
             area = Math.max(area, length*breadth);
 
-            if(height[start]<height[end]) {
-                while(start<end && height[start+1]<height[start]) {
-                    start++;
-                }
+            while(start<end && height[start]<=breadth) {
                 start++;
-            } else {
-                while(start<end && height[end-1]<height[end]) {
-                    end--;
-                }
+            }
+            while(start<end && height[end]<=breadth) {
                 end--;
             }
         }
