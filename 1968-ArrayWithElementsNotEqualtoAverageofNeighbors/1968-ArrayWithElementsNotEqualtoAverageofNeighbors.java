@@ -1,4 +1,4 @@
-// Last updated: 3/4/2025, 10:02:19 PM
+// Last updated: 3/8/2025, 12:13:52 AM
 class Solution {
     public int[] rearrangeArray(int[] nums) {
         Arrays.sort(nums);
