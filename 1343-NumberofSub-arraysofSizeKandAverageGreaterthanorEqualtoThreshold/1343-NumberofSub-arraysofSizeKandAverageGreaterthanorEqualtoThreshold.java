@@ -1,4 +1,4 @@
-// Last updated: 3/11/2025, 10:13:20 PM
+// Last updated: 3/11/2025, 10:14:03 PM
 class Solution {
     public int numOfSubarrays(int[] arr, int k, int threshold) {
         int count=0;
@@ -12,9 +12,7 @@ class Solution {
         if (sum >= target) count++;
 
         for (int i = k; i < arr.length; i++) {
-            sum += arr[i];      
-            sum -= arr[i - k]; 
-
+            sum = sum+arr[i]-arr[i-k];      
             if (sum >= target) count++;
         }
 
