@@ -1,4 +1,4 @@
-// Last updated: 3/12/2025, 9:54:34 PM
+// Last updated: 3/12/2025, 9:56:24 PM
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         int left=0;
@@ -12,10 +12,8 @@ class Solution {
                 set.add(chars[right]);
                 right++;
             } else {
-                while(set.contains(chars[right])) {
-                    set.remove(chars[left]);
-                    left++;
-                }
+                set.remove(chars[left]);
+                left++;
             }
             maxLen = Math.max(maxLen, right-left);
         }
