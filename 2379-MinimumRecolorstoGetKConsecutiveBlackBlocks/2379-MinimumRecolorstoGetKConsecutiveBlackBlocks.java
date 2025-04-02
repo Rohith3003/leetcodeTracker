@@ -1,30 +1,29 @@
-// Last updated: 4/2/2025, 11:08:21 AM
+// Last updated: 4/2/2025, 11:09:34 AM
 class Solution {
     public int minimumRecolors(String blocks, int k) {
-        int start=0;
-        int end=k;
-        int minReColors=0;
+        int start = 0;
+        int minReColors = 0;
 
-        for(int i=start;i<end;i++) {
-            if(blocks.charAt(i)=='W') {
+        for (int i = 0; i < k; i++) {
+            if (blocks.charAt(i) == 'W') {
                 minReColors++;
             }
         }
 
         int temp = minReColors;
 
-        while(end<blocks.length()) {
-            if(blocks.charAt(start)=='W') {
-                temp--;
+
+        for (int end = k; end < blocks.length(); end++) {
+            if (blocks.charAt(start) == 'W') {
+                temp--; 
             }
 
-            if(blocks.charAt(end)=='W') {
-                temp++;
+            if (blocks.charAt(end) == 'W') {
+                temp++; 
             }
 
             minReColors = Math.min(minReColors, temp);
             start++;
-            end++;
         }
 
         return minReColors;
